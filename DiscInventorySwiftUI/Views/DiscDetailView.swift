@@ -11,24 +11,42 @@ struct DiscDetailView: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @State private var nameText = ""
-    @State private var discColor = "Blue"
-    @State private var discType = "Putter"
-    @State private var manufacturer = ""
-    @State private var plastic = ""
-    @State private var speed = ""
-    @State private var glide = ""
-    @State private var turn = ""
-    @State private var fade = ""
-    @State private var weight = ""
-    @State private var condition = "Great"
-    @State private var notes = ""
-    @State private var inBag = true
+    @State private var nameText: String
+    @State private var discColor: String
+    @State private var discType: String
+    @State private var manufacturer: String
+    @State private var plastic: String
+    @State private var speed: String
+    @State private var glide: String
+    @State private var turn: String
+    @State private var fade: String
+    @State private var weight: String
+    @State private var condition: String
+    @State private var notes: String
+    @State private var inBag: Bool
     
     let disc: Disc?
     let discColors = ["Blue", "Green", "Yellow"]
     let discTypes = ["Putter", "Midrange", "Fairway", "Distance"]
     let conditions = ["Great", "Good", "Fair", "Poor"]
+    
+    init(disc: Disc?) {
+        self.disc = disc
+        
+        self._nameText = State(initialValue: disc?.name ?? "")
+        self._discColor = State(initialValue: "Blue")
+        self._discType = State(initialValue: disc?.type.rawValue ?? "Putter")
+        self._manufacturer = State(initialValue: disc?.manufacturer ?? "")
+        self._plastic = State(initialValue: disc?.plastic ?? "")
+        self._speed = State(initialValue: disc?.speed.description ?? "")
+        self._glide = State(initialValue: disc?.glide.description ?? "")
+        self._turn = State(initialValue: disc?.turn.description ?? "")
+        self._fade = State(initialValue: disc?.fade.description ?? "")
+        self._weight = State(initialValue: disc?.weightInGrams.description ?? "")
+        self._condition = State(initialValue: disc?.condition.rawValue ?? "Great")
+        self._notes = State(initialValue: disc?.notes ?? "")
+        self._inBag = State(initialValue: disc?.inBag ?? true)
+    }
     
     var body: some View {
         Form {
@@ -132,7 +150,7 @@ struct DiscDetailView: View {
 struct DiscDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            DiscDetailView(disc: Disc(name: "Aviar", type: .putter, manufacturer: "Innova", plastic: "DX", weightInGrams: 175, speed: 2, glide: 3, turn: 0, fade: 1, condition: .great, notes: "", inBag: true))
+            DiscDetailView(disc: Disc(name: "Aviar", type: .putter, manufacturer: "Innova", plastic: "DX", weightInGrams: 175, speed: 2, glide: 3, turn: 0, fade: 1, condition: .great, notes: "This is a test disc", inBag: true))
         }
     }
 }
