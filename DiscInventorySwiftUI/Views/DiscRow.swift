@@ -22,7 +22,6 @@ struct DiscRow: View {
                     .fill(.black)
                     .frame(width: 50, height: 50)
                     .overlay(Circle().stroke(Color(hex: disc.colorString ?? "") ?? .black, lineWidth: 4))
-                    .padding([.leading])
                     .padding([.trailing], 5)
             }
             

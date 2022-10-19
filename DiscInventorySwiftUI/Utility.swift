@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 import SwiftUI
 
+// Via https://blog.eidinger.info/from-hex-to-color-and-back-in-swiftui
+
 extension Color {
     init?(hex: String) {
         var hexSanitized = hex.trimmingCharacters(in: .whitespacesAndNewlines)
